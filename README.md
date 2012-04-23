@@ -10,6 +10,7 @@ Now its maintainer is a Chinese oier - Sweetdumplings(sweetdum) <linmx0130@163.c
 Jaki is the name of a lovely and kind-heated girl who helped Sweetdumplings when he was in a bad time.
 
 """
+
     Jakijudge is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
