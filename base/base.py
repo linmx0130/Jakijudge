@@ -25,8 +25,9 @@ All the class need a member: _jaki_class_mark. It is a string and it show what i
 the list of classes the base module supported:
     File_config
     Diff_config
+    Compiler_config
 """
-    
+import os
 class File_config:
     """
     This class 5 has members:
@@ -58,18 +59,47 @@ class Diff_config:
         1.standard: the standard which the diff to follow
         2.filename: the path of the diff program
         3.run() 
+        4.addition_info: the addition information from the diff program
     """
-    def __init__(self,standard=1,file_name="oidiff"):
+    def __init__(self,standard=1,diff_filename="diff"):
         self._jaki_class_mark="DIFF_CONFIG"
-         
-    def run():
-    #TODO
+        self.diff_filename=diff_filename
+        self.standard=standard;
+    def run(self,data):
+        if (data._jaki_class_mark!="FILE_CONFIG"):
+            raise Wrong_inside_information
+        if (self.standard==1):
+            command=self.diff_filename+" "+data.std_output_file+" "+data.output_file+"> /dev/null"
+            tmp=os.system(command)
+            if (tmp!=0):
+                return False 
+            else:
+                return True
 
         """
         This function is used to call the diff program to compare the 
         answer and return the result.
         """     
-    
+class Compiler_config:
+    """
+        you can use "%source%" replace the source filename and use 
+        "%obj%" replace the object filename
+    """
+    def __init__(self,language,command):
+        self._jaki_class_mark="COMPILER_CONFIG"
+        self.language=language
+        self.command=command
+    def run(self,source,obj):
+        shell_c=self.command.replace("%source%",source)
+        shell_c=shell_c.replace("%obj%",obj)
+        print("===Compiling...===")
+        print("  Command:"+shell_c)
+        if (os.system(shell_c)==0):
+            print("===Compiled!===")
+            return 0
+        else: 
+            print("===Compiling Error!===")
+            return 1
 if __name__=="__main__":
     print("This file can't be called by user directly.")
     print(__doc__)
