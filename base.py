@@ -28,6 +28,12 @@ the list of classes the base module supported:
     Compiler_config
 """
 import os
+class JakiError(Exception):
+    def __init__(self,value):
+        self.value=value
+    def __str__(self):
+        return repr(self.value)
+
 class File_config:
     """
     This class 5 has members:
@@ -39,7 +45,6 @@ class File_config:
     """
     
     def __init__(self,std_input_file,std_output_file,input_file,output_file):
-        self._jaki_class_mark="FILE_CONFIG"
         self.define(std_input_file,std_output_file,input_file,output_file)
     
     def define(self,std_input_file,std_output_file,input_file,output_file):
@@ -62,7 +67,6 @@ class Diff_config:
         4.addition_info: the addition information from the diff program
     """
     def __init__(self,standard=1,diff_filename="diff"):
-        self._jaki_class_mark="DIFF_CONFIG"
         self.diff_filename=diff_filename
         self.standard=standard;
     def run(self,data):
@@ -86,7 +90,6 @@ class Compiler_config:
         "%obj%" replace the object filename
     """
     def __init__(self,language,command):
-        self._jaki_class_mark="COMPILER_CONFIG"
         self.language=language
         self.command=command
     def run(self,source,obj):

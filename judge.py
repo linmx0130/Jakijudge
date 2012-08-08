@@ -23,15 +23,22 @@ It recieves all the testing infomation and start the test processing.
 The only one public function is Main, it will start the testing.
     def Main(self,exe_file_name,file_info,limit_info,diff_info)
 """
+from base import File_config
+from base import Diff_config
+from base import JakiError
 class Judge:
     def __init__(self):
         pass
     def _test_argument(self,exe_file_name,file_info,limit_info,diff_info):
-        pass
+        if (exe_file_name.__class__!="str"):
+            return True
+        if (file_info.__class__!="File_config"):
+            return True
+        
     def main(self,exe_file_name,file_info,limit_info,diff_info):
         # TODO
         # 1.Test the argument is right or not.
         # 2.run the exe_file_name under the limit
         # 3.tell the ansfile is right or not
-        _test_argument(exe_file_name,file_info,limit_info,diff_info)
-        pass
+        if (self._test_argument(exe_file_name,file_info,limit_info,diff_info)):
+            raise JakiError("Wrong argument type")

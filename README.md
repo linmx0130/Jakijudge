@@ -1,7 +1,7 @@
 Jakijudge
 =========
 
-A offline acm/oi judger for *nix system
+A offline acm/oi judger for \*nix system
 
 In the past 6 months, Jakijudge is built in C++. But now, I decide to use Python to rebuild whole Jakijudge(without oidiff).
 
