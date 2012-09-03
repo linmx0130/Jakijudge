@@ -1,0 +1,6 @@
+arg1: Time limit(ms,integer)
+arg2: Memory limit(KB,integer)
+arg3: Stack limit(KB,integer)
+arg4: file limit(how many,integer)
+arg5: exec filename.
+
