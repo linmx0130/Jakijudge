@@ -36,7 +36,7 @@ class JakiError(Exception):
 
 class File_config:
     """
-    This class 5 has members:
+    This class has 5 members:
         1.std_input_file
         2.std_output_file
         3.input_file
