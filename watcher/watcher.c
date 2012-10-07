@@ -16,12 +16,23 @@ const char* argument_option_short="ht:m:s:f:e:";
 int main(int argc,char **argv)
 {
 	argument_get(argc, argv);
-//only for debug
-	printf("%d\n",time_limit);
-	printf("%d\n",memory_limit);
-	printf("%d\n",stack_limit);
-	printf("%d\n",file_limit);
-	printf("%s\n",exec_filename);
+	int pid=fork();
+	if (pid==0)
+	{
+		struct rlimit rlimit_data;
+		rlimit_data.rlim_max=rlimit_data.rlim_cur=time_limit;
+		setrlimit(RLIMIT_CPU,&rlimit_data);
+		if (execlp(exec_filename,exec_filename,(char*)0)==-1)
+		{
+			fprintf(stderr,"System Error:%s\n",strerror(errno));
+			return 2;
+		}
+	}
+	else
+	{
+		wait_process(pid);
+	}
+	return 0;
 }
 
 
@@ -78,5 +89,25 @@ void check_int_string(char *s)
 			fprintf(stderr,"Wrong Argument!\n");
 			exit(1);
 		}
+	}
+}
+void wait_process(int pid)
+{
+	int status;
+	struct rusage child_rusage;
+	sleep((time_limit+999)/1000);
+	//Time Limit Excceed Test
+	if (!wait4(pid,&status,WNOHANG,&child_rusage))
+	{
+		kill(pid,SIGKILL);
+		puts("1:Time Limit Exceeded");
+		return ;
+	}
+
+	//Runtime Error Test
+	if (WEXITSTATUS(status)||WIFSIGNALED(status))
+	{
+		puts("2:Runtime Error!");
+		return ;
 	}
 }
