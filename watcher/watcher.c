@@ -22,6 +22,9 @@ int main(int argc,char **argv)
 		struct rlimit rlimit_data;
 		rlimit_data.rlim_max=rlimit_data.rlim_cur=time_limit;
 		setrlimit(RLIMIT_CPU,&rlimit_data);
+		rlimit_data.rlim_max=rlimit_data.rlim_cur=memory_limit*1024*4;
+		//The program is given the memory 4 times of the limit.
+		setrlimit(RLIMIT_AS,&rlimit_data);
 		if (execlp(exec_filename,exec_filename,(char*)0)==-1)
 		{
 			fprintf(stderr,"System Error:%s\n",strerror(errno));
@@ -110,4 +113,17 @@ void wait_process(int pid)
 		puts("2:Runtime Error!");
 		return ;
 	}
+	if ((int)child_rusage.ru_minflt*(getpagesize()>>10)>memory_limit)
+	{
+		puts("3:Memory Limit Exceeded");
+		return ;
+	}
+	puts("0:Finished Succeed!");
+	printf("Time Used: %d ms\n",
+			(child_rusage.ru_utime.tv_sec+
+			 child_rusage.ru_stime.tv_sec)*1000+
+			(child_rusage.ru_utime.tv_usec+
+			child_rusage.ru_stime.tv_usec)/1000);
+	printf("Memory Used:%d KB\n",(int)child_rusage.ru_minflt*(getpagesize()>>10));
+
 }
