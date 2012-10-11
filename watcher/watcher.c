@@ -25,6 +25,10 @@ int main(int argc,char **argv)
 		rlimit_data.rlim_max=rlimit_data.rlim_cur=memory_limit*1024*4;
 		//The program is given the memory 4 times of the limit.
 		setrlimit(RLIMIT_AS,&rlimit_data);
+		rlimit_data.rlim_max=rlimit_data.rlim_cur=stack_limit*1024;
+		setrlimit(RLIMIT_STACK,&rlimit_data);
+		rlimit_data.rlim_max=rlimit_data.rlim_cur=file_limit;
+		setrlimit(RLIMIT_NOFILE,&rlimit_data);
 		if (execlp(exec_filename,exec_filename,(char*)0)==-1)
 		{
 			fprintf(stderr,"System Error:%s\n",strerror(errno));
@@ -49,13 +53,15 @@ void argument_get(int argc, char
 	file_limit=50;
 	int c;
 	int option_index=0;
+	int got_exec_file=0;
 	while (c=getopt_long(argc,argv,argument_option_short,argument_option,&option_index))
 	{
 		if (c==-1) break;
 		switch(c)
 		{
 			case 'h':
-				//help
+				help_show();
+				exit(0);
 				break;
 			case 't':
 				check_int_string(optarg);
@@ -75,11 +81,17 @@ void argument_get(int argc, char
 				break;
 			case 'e':
 				strncpy(exec_filename,optarg,strlen(optarg));
+				got_exec_file=1;
 				break;
 			case '?':
 				//getopt_long will puts something to stderr
 				exit(1);
 		}
+	}
+	if (!got_exec_file) 
+	{
+		fprintf(stderr,"Wrong Argument!\n");
+		exit(1);
 	}
 }
 void check_int_string(char *s)
@@ -126,4 +138,10 @@ void wait_process(int pid)
 			child_rusage.ru_stime.tv_usec)/1000);
 	printf("Memory Used:%d KB\n",(int)child_rusage.ru_minflt*(getpagesize()>>10));
 
+}
+void help_show()
+{
+	printf("watcher %s - Jaki Project's program runner.\n",VAR_DATA);
+	puts("You will get more information about wathcer by typing:");
+	puts("   $ man watcher");
 }
