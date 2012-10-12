@@ -1,4 +1,5 @@
 #program for testing module
 test.py
 *.pyc
+Test*
 

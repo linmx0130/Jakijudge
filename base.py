@@ -26,6 +26,7 @@ the list of classes the base module supported:
     File_config
     Diff_config
     Compiler_config
+    Limit_config
 """
 import os
 class JakiError(Exception):
@@ -70,7 +71,7 @@ class Diff_config:
         self.diff_filename=diff_filename
         self.standard=standard;
     def run(self,data):
-        if (data._jaki_class_mark!="FILE_CONFIG"):
+        if (not isinstance(data,(File_config))):
             raise Wrong_inside_information
         if (self.standard==1):
             command=self.diff_filename+" "+data.std_output_file+" "+data.output_file+"> /dev/null"
@@ -103,6 +104,16 @@ class Compiler_config:
         else: 
             print("===Compiling Error!===")
             return 1
+class Limit_config:
+    """
+        saved information of resource limit
+    """
+    def __init__(self,time_limit=-1,memory_limit=-1,stack_limit=-1,file_limit=-1):
+        self.time_l=time_limit;
+        self.memory_l=time_limit;
+        self.stack_l=time_limit;
+        self.file_l=time_limit;
+
 if __name__=="__main__":
     print("This file can't be called by user directly.")
     print(__doc__)

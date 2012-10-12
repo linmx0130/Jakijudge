@@ -25,16 +25,23 @@ The only one public function is Main, it will start the testing.
 """
 from base import File_config
 from base import Diff_config
+from base import Limit_config
 from base import JakiError
+import os
 class Judge:
     def __init__(self):
-        pass
+        self._watcher_path="./watcher/watcher"
+        #only for develop :)
     def _test_argument(self,exe_file_name,file_info,limit_info,diff_info):
-        if (exe_file_name.__class__!="str"):
+        if (not isinstance(exe_file_name,(str))):
             return True
-        if (file_info.__class__!="File_config"):
+        if (not isinstance(file_info,(File_config))):
             return True
-        
+        if (not isinstance(limit_info,(Limit_config))):
+            return True
+        if (not isinstance(diff_info,(Diff_config))):
+            return True
+        return False
     def main(self,exe_file_name,file_info,limit_info,diff_info):
         # TODO
         # 1.Test the argument is right or not.
@@ -42,3 +49,21 @@ class Judge:
         # 3.tell the ansfile is right or not
         if (self._test_argument(exe_file_name,file_info,limit_info,diff_info)):
             raise JakiError("Wrong argument type")
+
+        #call watcher to test
+        command=self._watcher_path+" -e "+exe_file_name
+        if (limit_info.time_l>0): 
+            command+=" -t"+limit_info.time_l;
+        if (limit_info.memory_l>0): 
+            command+=" -m"+limit_info.memory_l;
+        if (limit_info.stack_l>0): 
+            command+=" -s"+limit_info.stack_l;
+        if (limit_info.file_l>0): 
+            command+=" -f"+limit_info.file_l;
+        watcher_pipe=os.popen(command,"r",3096);
+        print (command)
+        message=watcher_pipe.read()
+        if (message[0]=='0'):
+            print ("Pass limit")
+        else:
+            print ("Limit Excceed!")
