@@ -32,7 +32,9 @@ class Judge:
     def __init__(self):
         self._watcher_path="./watcher/watcher"
         #only for develop :)
-    def _test_argument(self,exe_file_name,file_info,limit_info,diff_info):
+    def _test_argument(self,point_information,exe_file_name,file_info,limit_info,diff_info):
+        if (not isinstance(point_information,(str))):
+            return True
         if (not isinstance(exe_file_name,(str))):
             return True
         if (not isinstance(file_info,(File_config))):
@@ -42,12 +44,22 @@ class Judge:
         if (not isinstance(diff_info,(Diff_config))):
             return True
         return False
-    def main(self,exe_file_name,file_info,limit_info,diff_info):
+    def main(self,exe_file_name,file_info,limit_info,diff_info,point_information=""):
+        """
+            def main(exe_file_name,file_info,limit_info,diff_info,point_information)
+            exe_file_name: a string, the filename of the program
+            file_info: a File_config, the config about file
+            limit_info: a Limit_config, the config about resource limit
+            diff_info: a Diff_config, the diff config
+            point_information: the number for the data point
+            
+            this function will start a judge to test the program with the data and the resoure limit, and using the diff tool to test.
+        """
         # TODO
         # 1.Test the argument is right or not.
         # 2.run the exe_file_name under the limit
         # 3.tell the ansfile is right or not
-        if (self._test_argument(exe_file_name,file_info,limit_info,diff_info)):
+        if (self._test_argument(point_information,exe_file_name,file_info,limit_info,diff_info)):
             raise JakiError("Wrong argument type")
 
         #call watcher to test
@@ -63,7 +75,12 @@ class Judge:
         watcher_pipe=os.popen(command,"r",3096);
         print (command)
         message=watcher_pipe.read()
-        if (message[0]=='0'):
-            print ("Pass limit")
-        else:
-            print ("Limit Excceed!")
+        if (message[0]=='1'):
+            print (point_information+"Time Limit Excceed!")
+        if (message[0]=='2'):
+            print (point_information+"Runtime Error!")
+        if (message[0]=='3'):
+            print (point_information+"Memory Limit Excceed!")
+
+        #call diff to test
+

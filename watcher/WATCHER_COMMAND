@@ -4,3 +4,8 @@ arg3: Stack limit(KB,integer) --stack=/-s
 arg4: file limit(how many,integer) --file=/-f
 arg5: exec filename. --exec=/-e
 
+Output:
+0:Succeed
+1:TLE
+2:RE
+3:MLE
