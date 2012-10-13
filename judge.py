@@ -55,10 +55,8 @@ class Judge:
             
             this function will start a judge to test the program with the data and the resoure limit, and using the diff tool to test.
         """
-        # TODO
-        # 1.Test the argument is right or not.
-        # 2.run the exe_file_name under the limit
-        # 3.tell the ansfile is right or not
+
+       
         if (self._test_argument(point_information,exe_file_name,file_info,limit_info,diff_info)):
             raise JakiError("Wrong argument type")
 
@@ -81,6 +79,9 @@ class Judge:
             print (point_information+"Runtime Error!")
         if (message[0]=='3'):
             print (point_information+"Memory Limit Excceed!")
-
         #call diff to test
-
+        
+        # TODO
+        # 1.Test the argument is right or not.
+        # 2.run the exe_file_name under the limit
+        # 3.tell the ansfile is right or not

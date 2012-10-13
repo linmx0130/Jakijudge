@@ -113,6 +113,41 @@ class Limit_config:
         self.memory_l=time_limit;
         self.stack_l=time_limit;
         self.file_l=time_limit;
+class Problem_config:
+    """
+        saved the information of a problem
+        it's member:
+            1.pname: the name of the problem
+            2.input_file: the input filename
+            3.output_file: the output filename
+            4.diff_tool: the diff config
+            5.data_array: the information of the data point
+        it's function:
+            def push_data(self,std_input_file,std_output_file,limit_data,score):
+            def data_tot(self):
+            def get_file_config(self,index):
+            def get_limit_config(self,index):
+            def get_score(self,index):
+
+    """
+    def __init__(self,pname,input_file,output_file,diff_tool):
+        self.problem_name=pname
+        self.input_file=input_file
+        self.output_file=output_file
+        self.diff_tool=diff_tool
+        self.data_array=[]
+    def push_data(self,std_input_file,std_output_file,limit_data,score):
+        self.data_array.append((std_input_file,std_output_file,limit_data,score))
+    def data_tot(self):
+        return len(self.data_array)
+    def get_file_config(self,index):
+        ret=File_config(self.data_array[index][0],self.data_array[index][1],self.input_file,self.output_file)
+        return ret
+    def get_limit_config(self,index):
+        return data_array[index][2]
+    def get_score(self,index):
+        return data_array[index][3]
+
 
 if __name__=="__main__":
     print("This file can't be called by user directly.")
