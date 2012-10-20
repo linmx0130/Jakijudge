@@ -71,6 +71,10 @@ class Diff_config:
         self.diff_filename=diff_filename
         self.standard=standard;
     def run(self,data):
+        """
+        This function is used to call the diff program to compare the 
+        answer and return the result.
+        """     
         if (not isinstance(data,(File_config))):
             raise Wrong_inside_information
         if (self.standard==1):
@@ -81,10 +85,6 @@ class Diff_config:
             else:
                 return True
 
-        """
-        This function is used to call the diff program to compare the 
-        answer and return the result.
-        """     
 class Compiler_config:
     """
         you can use "%source%" replace the source filename and use 

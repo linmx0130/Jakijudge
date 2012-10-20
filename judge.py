@@ -28,6 +28,7 @@ from base import Diff_config
 from base import Limit_config
 from base import JakiError
 import os
+import shutil
 class Judge:
     def __init__(self):
         self._watcher_path="./watcher/watcher"
@@ -44,7 +45,7 @@ class Judge:
         if (not isinstance(diff_info,(Diff_config))):
             return True
         return False
-    def main(self,exe_file_name,file_info,limit_info,diff_info,point_information=""):
+    def main(self,exe_file_name,file_info,limit_info,diff_info,point_information="",testing_path=""):
         """
             def main(exe_file_name,file_info,limit_info,diff_info,point_information)
             exe_file_name: a string, the filename of the program
@@ -52,7 +53,8 @@ class Judge:
             limit_info: a Limit_config, the config about resource limit
             diff_info: a Diff_config, the diff config
             point_information: the number for the data point
-            
+            testing_path: the path (a dir) to run the testing work
+
             this function will start a judge to test the program with the data and the resoure limit, and using the diff tool to test.
         """
 
@@ -60,6 +62,7 @@ class Judge:
         if (self._test_argument(point_information,exe_file_name,file_info,limit_info,diff_info)):
             raise JakiError("Wrong argument type")
 
+        shutil.copy(file_info.std_input_file,testing_path+file_info.input_file);
         #call watcher to test
         command=self._watcher_path+" -e "+exe_file_name
         if (limit_info.time_l>0): 
@@ -73,15 +76,24 @@ class Judge:
         watcher_pipe=os.popen(command,"r",3096);
         print (command)
         message=watcher_pipe.read()
+        ret_message="";
         if (message[0]=='1'):
             print (point_information+"Time Limit Excceed!")
+            ret_message="T";
         if (message[0]=='2'):
             print (point_information+"Runtime Error!")
+            ret_message="R";
         if (message[0]=='3'):
             print (point_information+"Memory Limit Excceed!")
+            ret_message="M";
         #call diff to test
-        
-        # TODO
-        # 1.Test the argument is right or not.
-        # 2.run the exe_file_name under the limit
-        # 3.tell the ansfile is right or not
+        if (not diff_info.run(file_info)):
+            print (point_information+"Wrong Answer!")
+            ret_message="W";
+        else:
+            print(point_information+"Accept")
+            ret_message="A";
+        #clean temp file
+        os.remove(testing_path+file_info.input_file)
+        os.remove(testing_path+file_info.output_file)
+
