@@ -1,5 +1,5 @@
 #  -*- coding: utf-8 -*-
-#  base/base.py
+#  base.py
 #  Jaki Judge: Offline OI Judger in Linux
 #  Copyright (c) by Sweetdumplings<linmx0130@163.com> 
 #
@@ -104,6 +104,18 @@ class Compiler_config:
         else: 
             print("===Compiling Error!===")
             return 1
+class Compiler_set_type:
+    def __init__(self):
+        self.compiler_set={}
+        self.last_name_set={}
+
+    def push(self,language_mark,last_name,compiler_config):
+        self.compiler_set[language_mark]=compiler_config
+        self.last_name_set[last_name]=language_mark
+    
+    def find(self,last_name):
+        return self.compiler_set[self.last_name_set[last_name]]
+
 class Limit_config:
     """
         saved information of resource limit

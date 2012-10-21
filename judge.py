@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-#  judge/judge.py
+#  judge.py
 #  Jaki Judge: Offline OI Judger in Linux
 #  Copyright (c) by Sweetdumplings<linmx0130@163.com> 
 #
