@@ -12,7 +12,7 @@ I.1 Contest Directory
 		|  |--pro1/          | Directory of Problem "pro1" *2 
 		|  |--pro2/          |
 		|  ...               |
-        |--Src/              | Source Directory
+		|--Src/              | Source Directory
 		|  |--Mike/          |
 		|  |  |--pro1.cpp    |
 		|  |  |--pro2.pas    |
