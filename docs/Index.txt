@@ -1,0 +1,5 @@
+I.Config And Starting Test
+	1.Contest Directory      usr_01.txt
+	2.Problem Config File    usr_02.txt
+	3.Contest Config File    usr_03.txt
+	4.Start Jaki             usr_04.txt

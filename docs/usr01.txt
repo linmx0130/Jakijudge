@@ -1,0 +1,25 @@
+//usr_01 I.1
+
+I.1 Contest Directory
+	
+	Like other offline judge system, all the data and the source should be 
+	put under a directory so that Jaki can find them and start the testing 
+	processing. Here is a tree of a simple example.
+
+		Test/                | The name of this directory is not mind.
+		|--JAKI              | Contest config file *1
+		|--Data/             | Data Directory
+		|  |--pro1/          | Directory of Problem "pro1" *2 
+		|  |--pro2/          |
+		|  ...               |
+        |--Src/              | Source Directory
+		|  |--Mike/          |
+		|  |  |--pro1.cpp    |
+		|  |  |--pro2.pas    |
+		|  |--Lisa/          |
+		|  |  |--pro1.java   |
+		|  |  |--pro2.c      |
+		|  ...               |
+
+	*1 For details, please turn to usr_03
+	*2 For details, please turn to usr_02

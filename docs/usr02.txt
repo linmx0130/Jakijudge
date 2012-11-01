@@ -1,0 +1,34 @@
+//usr_02 I.2
+
+I.2 Problem Config File
+
+	All the problem need a config file to tell Jaki where is it data and 
+	limit of testing processing. We call this file problem config file.
+
+	This file should be put under the directory of the problem, and named
+	"config.ini", like this:
+		Test/
+		|--Data/
+		   |--pro1
+		      |--config.ini   ***
+			  |--pro1.1.in
+			  |--pro1.1.out
+			  |...
+	This way of config is learnd form CodeBeta Online Judge, which I used 
+	for more than one years.
+
+	Here is the format of config.ini:
+
+	The 1st line: 
+		input file name|output file name|judge tool type|judge tool
+	
+	These string should be separated by vertical line "|". "input file name"
+	is the name of the input file for program. "output file name" is the 
+	name of the output file for program. 
+	
+	"judge tool type" will tell Jaki which diff should be used. For most
+	judge task(not special judge), it should be "1". "judge tool" is the 
+	name of the judge tool(diff or oidiff is mostly choices). For more 
+	details about judge tool please turn to /* Depend Mark(diff) */.
+
+	//TODO
