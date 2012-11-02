@@ -1,5 +1,8 @@
-I.Config And Starting Test
+I.Starting Test
 	1.Contest Directory      usr_01.txt
 	2.Problem Config File    usr_02.txt
 	3.Contest Config File    usr_03.txt
 	4.Start Jaki             usr_04.txt
+
+II.Special Judge
+	1.Judge Tool Standard    usr_05.txt

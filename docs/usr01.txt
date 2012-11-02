@@ -4,7 +4,7 @@ I.1 Contest Directory
 	
 	Like other offline judge system, all the data and the source should be 
 	put under a directory so that Jaki can find them and start the testing 
-	processing. Here is a tree of a simple example.
+	process. Here is a tree of a simple example.
 
 		Test/                | The name of this directory is not mind.
 		|--JAKI              | Contest config file *1

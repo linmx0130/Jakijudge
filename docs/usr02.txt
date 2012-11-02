@@ -3,7 +3,7 @@
 I.2 Problem Config File
 
 	All the problem need a config file to tell Jaki where is it data and 
-	limit of testing processing. We call this file problem config file.
+	limit of testing process. We call this file problem config file.
 
 	This file should be put under the directory of the problem, and named
 	"config.ini", like this:
@@ -30,5 +30,14 @@ I.2 Problem Config File
 	judge task(not special judge), it should be "1". "judge tool" is the 
 	name of the judge tool(diff or oidiff is mostly choices). For more 
 	details about judge tool please turn to /* Depend Mark(diff) */.
+
+	The 2nd line:
+		the total of points: N
+	
+	This line need only an interger, telling Jaki there are how many data 
+	points of the problem. If it is not an integer, Jaki will stop working.
+
+	Then there are N lines following, each line should be written in this
+	format:
 
 	//TODO
