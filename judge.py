@@ -74,7 +74,7 @@ class Judge:
         if (limit_info.file_l>0): 
             command+=" -f"+limit_info.file_l;
         watcher_pipe=os.popen(command,"r",3096);
-        print (command)
+        #print (command)
         message=watcher_pipe.read()
         ret_message="";
         if (message[0]=='1'):

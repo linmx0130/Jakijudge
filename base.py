@@ -122,9 +122,9 @@ class Limit_config:
     """
     def __init__(self,time_limit=-1,memory_limit=-1,stack_limit=-1,file_limit=-1):
         self.time_l=time_limit;
-        self.memory_l=time_limit;
-        self.stack_l=time_limit;
-        self.file_l=time_limit;
+        self.memory_l=memory_limit;
+        self.stack_l=stack_limit;
+        self.file_l=file_limit;
 class Problem_config:
     """
         saved the information of a problem
@@ -156,9 +156,9 @@ class Problem_config:
         ret=File_config(self.data_array[index][0],self.data_array[index][1],self.input_file,self.output_file)
         return ret
     def get_limit_config(self,index):
-        return data_array[index][2]
+        return self.data_array[index][2]
     def get_score(self,index):
-        return data_array[index][3]
+        return self.data_array[index][3]
 
 
 if __name__=="__main__":
