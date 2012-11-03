@@ -39,5 +39,18 @@ I.2 Problem Config File
 
 	Then there are N lines following, each line should be written in this
 	format:
+		point input file|point output file|time limit|memory limit|score
+	
+	"point input file" is the name of input file of this point. And the 
+	"point input file" is the output file name."time limit" , "memory
+	limit" and "score" should be an integer. Time limit is in ms and Memory
+	limit is in KB.
 
-	//TODO
+	Here is a example file:
+
+		apb.in|apb.out|1|oidiff
+		2
+		apb1.in|apb1.out|1000|65535|50
+		apb2.in|apb2.out|1000|65535|50
+	
+
