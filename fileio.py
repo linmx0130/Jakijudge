@@ -18,7 +18,12 @@
 #
 
 import base
+import os
 def load_problem_directory(pname,data_directory):
+    """
+        this function will read the config.ini in the data_directory and
+        return a Problem_config
+    """
     f=open(data_directory+'config.ini',"r")
     
     #read first line
@@ -34,12 +39,13 @@ def load_problem_directory(pname,data_directory):
     N=int(buf)
 
     #read next N lines
+    current_work_directory=os.getcwd()+"/";
     for i in range(0,N):
         buf=f.readline()
 
         (std_if,std_of,time_l,mem_l,score)=buf.split("|")
         l_tmp=base.Limit_config(time_limit=time_l,memory_limit=mem_l)
-        std_if=data_directory+std_if
-        std_of=data_directory+std_of
+        std_if=current_work_directory+data_directory+std_if
+        std_of=current_work_directory+data_directory+std_of
         p.push_data(std_if,std_of,l_tmp,score)
     return p

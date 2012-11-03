@@ -31,7 +31,7 @@ import os
 import shutil
 class Judge:
     def __init__(self):
-        self._watcher_path="./watcher/watcher"
+        self._watcher_path=os.getcwd()+"/watcher/watcher"
         #only for develop :)
     def _test_argument(self,point_information,exe_file_name,file_info,limit_info,diff_info):
         if (not isinstance(point_information,(str))):
@@ -47,7 +47,7 @@ class Judge:
         return False
     def main(self,exe_file_name,file_info,limit_info,diff_info,point_information="",testing_path=""):
         """
-            def main(exe_file_name,file_info,limit_info,diff_info,point_information)
+            def main(exe_file_name,file_info,limit_info,diff_info,point_information,testing_path)
             exe_file_name: a string, the filename of the program
             file_info: a File_config, the config about file
             limit_info: a Limit_config, the config about resource limit
@@ -73,8 +73,12 @@ class Judge:
             command+=" -s"+limit_info.stack_l;
         if (limit_info.file_l>0): 
             command+=" -f"+limit_info.file_l;
+
+        #runprogram in the testing directory
+        current_work_directory=os.getcwd()
+        os.chdir(testing_path)
+
         watcher_pipe=os.popen(command,"r",3096);
-        #print (command)
         message=watcher_pipe.read()
         ret_message="";
         if (message[0]=='1'):
@@ -93,6 +97,8 @@ class Judge:
         else:
             print(point_information+"Accept")
             ret_message="A";
+        #come back
+        os.chdir(current_work_directory)
         #clean temp file
         os.remove(testing_path+file_info.input_file)
         os.remove(testing_path+file_info.output_file)

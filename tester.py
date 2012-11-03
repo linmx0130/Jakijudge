@@ -20,10 +20,22 @@
 import base
 import judge
 import os
+import fileio
+def get_last_name(source):
+    for i in range(len(source)-1,-1,-1):
+        if (source[i]=='.'):
+            return source[i:len(source)]
 
-class tester:
+def tester_run(source,problem):
     """
-        it will start the testing work
+        compile the source file and start judge
     """
-    def __init__(self,source,problem):
-        #TODO
+    c=base.compiler_set.find(get_last_name(source))
+    runfile='"'+base.temp_directory+"program"+'"'
+    c.run(source,'"'+base.temp_directory+"program"+'"');
+
+    j=judge.Judge()
+    for i in range(0,problem.data_tot()):
+        j.main(runfile,problem.get_file_config(i),problem.get_limit_config(i),problem.diff_tool,point_information=str(i)+":",testing_path=base.temp_directory)
+
+

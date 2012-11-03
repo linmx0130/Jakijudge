@@ -116,6 +116,18 @@ class Compiler_set_type:
     def find(self,last_name):
         return self.compiler_set[self.last_name_set[last_name]]
 
+class Problem_set_type:
+    def __init__(self):
+        self.problem_set={}
+        self.filename_set={}
+
+    def push(self,pname,filename,problem_config):
+        self.problem_set[pname]=problem_config
+        self.last_name_set[filename]=pname
+    
+    def find(self,filename):
+        return self.problem_set[self.filename_set[filename]]
+
 class Limit_config:
     """
         saved information of resource limit
@@ -164,3 +176,9 @@ class Problem_config:
 if __name__=="__main__":
     print("This file can't be called by user directly.")
     print(__doc__)
+
+#define some golbal variables
+compiler_set=Compiler_set_type()
+problem_set=Problem_set_type()
+temp_directory=""
+
