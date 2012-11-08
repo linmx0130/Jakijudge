@@ -1,0 +1,29 @@
+//usr_03 I.3
+
+I.3 Contest Config File
+	
+	Jaki 0.3 use a new text file format as its Contest Config File in order
+	to make Jaki easier to use and debug.
+
+	Contest config file should be put in the directory which is including 
+	the data and source. And it should be named as "JAKI". You can find a
+	directory tree in usr_01.
+	
+	The first line of contest config file (I will call it "JAKI file below")
+	is an English word, "FORMOSA", all the letter should be uppercase.
+
+	And next line is a number N, means how many problems there are.
+
+	Next N lines are in this format:
+		Problem Name|Data Directory Name|File Name
+	The "Problem Name" is only for mark the problem. But the 2nd and 3nd is
+	very import. If "Data Directory Name" is "plus", Jaki will find the data
+	of this problem in Data/plus/. And if "File Name" is "abc", Jaki will
+	try to find abc.* in source directory (all directory in Source/). A 
+	directory in Source/ is the source of a contestant. 
+
+	Pay attention, the three data needn't be same, while in most situations
+	they are same.
+
+	If you want to set more thing, such as adding some new language or 
+	change the compiling option, you need to turn to Chapter III.

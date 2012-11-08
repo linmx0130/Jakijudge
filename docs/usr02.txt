@@ -29,7 +29,7 @@ I.2 Problem Config File
 	"judge tool type" will tell Jaki which diff should be used. For most
 	judge task(not special judge), it should be "1". "judge tool" is the 
 	name of the judge tool(diff or oidiff is mostly choices). For more 
-	details about judge tool please turn to /* Depend Mark(diff) */.
+	details about judge tool please turn to Chapter II.
 
 	The 2nd line:
 		the total of points: N

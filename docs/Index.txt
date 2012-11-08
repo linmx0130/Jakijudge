@@ -6,3 +6,7 @@ I.Starting Test
 
 II.Special Judge
 	1.Judge Tool Standard    usr_05.txt
+	2.POSIX diff Standard    usr_06.txt
+
+III.Special Setting
+	1.Pre-test Script
