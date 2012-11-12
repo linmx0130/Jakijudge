@@ -49,3 +49,15 @@ def load_problem_directory(pname,data_directory):
         std_of=current_work_directory+data_directory+std_of
         p.push_data(std_if,std_of,l_tmp,score)
     return p
+
+def load_jaki_file():
+    pwd=os.getcwd();
+    f=open(pwd+"/JAKI","r")
+    buf=f.readline()
+    #Test the Head
+    if (buf!="FORMOSA"):
+        raise base.JakiError("Wrong Jaki File!") 
+    buf=f.readline()
+    N=int(buf)
+
+    #TODO

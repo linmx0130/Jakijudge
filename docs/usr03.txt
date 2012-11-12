@@ -9,7 +9,7 @@ I.3 Contest Config File
 	the data and source. And it should be named as "JAKI". You can find a
 	directory tree in usr_01.
 	
-	The first line of contest config file (I will call it "JAKI file below")
+	The first line of contest config file (I will call it "JAKI file" below)
 	is an English word, "FORMOSA", all the letter should be uppercase.
 
 	And next line is a number N, means how many problems there are.
