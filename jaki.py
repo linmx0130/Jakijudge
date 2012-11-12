@@ -37,9 +37,15 @@ def default_setting():
     except OSError:
         pass
         #the lock system is TODO!
+def load_contestant():
+    for dir_name in os.listdir("Source/"):
+        if (os.path.isdir("Source/"+dir_name)):
+            base.contestant_list.append(dir_name)
+
 def Main():
     #load settings
     default_setting()
     
     #load JAKI file
     fileio.load_jaki_file()
+    load_contestant()

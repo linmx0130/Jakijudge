@@ -167,15 +167,15 @@ class Problem_set_type:
 
     def push(self,pname,filename,problem_config):
         self.problem_set[pname]=problem_config
-        self.last_name_set[filename]=pname
+        self.filename_set[filename]=pname
     
     def find(self,filename):
         return self.problem_set[self.filename_set[filename]]
 
-
-#define some golbal variables
+#define some "golbal" variables
 compiler_set=Compiler_set_type()
 problem_set=Problem_set_type()
+contestant_list=[]
 temp_directory=""
 
 if __name__=="__main__":

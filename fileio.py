@@ -19,6 +19,12 @@
 
 import base
 import os
+def delete_last_char(s):
+    """
+        I use this function to delete the "\n" of a string 
+    """
+    return s[0:len(s)-1] 
+
 def load_problem_directory(pname,data_directory):
     """
         this function will read the config.ini in the data_directory and
@@ -29,7 +35,7 @@ def load_problem_directory(pname,data_directory):
     #read first line
     buf=f.readline()
     (input_file,output_file,diff_type,diff_tool_name)=buf.split("|")
-    diff_tool_name=diff_tool_name[0:len(diff_tool_name)-1]
+    diff_tool_name=delete_last_char(diff_tool_name)
     diff_type=int(diff_type)
     d=base.Diff_config(diff_type,diff_tool_name)
     p=base.Problem_config(pname,input_file,output_file,d)
@@ -42,8 +48,9 @@ def load_problem_directory(pname,data_directory):
     current_work_directory=os.getcwd()+"/";
     for i in range(0,N):
         buf=f.readline()
-
         (std_if,std_of,time_l,mem_l,score)=buf.split("|")
+        score=int(score)
+
         l_tmp=base.Limit_config(time_limit=time_l,memory_limit=mem_l)
         std_if=current_work_directory+data_directory+std_if
         std_of=current_work_directory+data_directory+std_of
@@ -51,13 +58,21 @@ def load_problem_directory(pname,data_directory):
     return p
 
 def load_jaki_file():
+    """
+        This function will load JAKI file and build base.problem_set
+    """
     pwd=os.getcwd();
     f=open(pwd+"/JAKI","r")
     buf=f.readline()
     #Test the Head
-    if (buf!="FORMOSA"):
+    if (buf!="FORMOSA\n"):
         raise base.JakiError("Wrong Jaki File!") 
     buf=f.readline()
     N=int(buf)
 
-    #TODO
+    for i in range(0,N):
+        buf=f.readline()
+        (pname,data_directory,sourcefile)=buf.split("|")
+        sourcefile=delete_last_char(sourcefile)
+        base.problem_set.push(pname,sourcefile,load_problem_directory(pname,"Data/"+data_directory+"/"))
+
