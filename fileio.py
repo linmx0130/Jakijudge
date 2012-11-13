@@ -75,4 +75,5 @@ def load_jaki_file():
         (pname,data_directory,sourcefile)=buf.split("|")
         sourcefile=delete_last_char(sourcefile)
         base.problem_set.push(pname,sourcefile,load_problem_directory(pname,"Data/"+data_directory+"/"))
+        base.problem_list.append(sourcefile)
 

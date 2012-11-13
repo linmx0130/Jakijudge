@@ -102,4 +102,6 @@ class Judge:
         #clean temp file
         os.remove(testing_path+file_info.input_file)
         os.remove(testing_path+file_info.output_file)
+        return (ret_message,diff_info.score_percent)
+
 

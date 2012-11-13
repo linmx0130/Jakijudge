@@ -22,6 +22,11 @@ import fileio
 import tester
 import judge
 import os
+class Contestant_result:
+    def __init__(name):
+        self.name=name
+        self.problem_result=[]
+
 def default_setting():
     #compiler settings
     c=base.Compiler_config("C","gcc -o %obj% %source% -lm")
@@ -41,7 +46,6 @@ def load_contestant():
     for dir_name in os.listdir("Source/"):
         if (os.path.isdir("Source/"+dir_name)):
             base.contestant_list.append(dir_name)
-
 def Main():
     #load settings
     default_setting()
@@ -49,3 +53,20 @@ def Main():
     #load JAKI file
     fileio.load_jaki_file()
     load_contestant()
+
+    #start test
+    for contestant in base.contestant_list:
+        print("Contestant: "+contestant)
+        for problem_source_file in base.problem_list:
+            found_source=False
+            for last_name in base.compiler_set.last_name_set.keys():
+                file_name="Source/"+contestant+"/"+problem_source_file+last_name
+                if (os.path.exists(file_name)):
+                    print ("  Found source file: "+file_name)
+                    print ("  Problem: "+base.problem_set.find(problem_source_file).problem_name)
+                    found_source=True
+                    #TODO:call judge
+                    break
+
+            if (found_source):
+                break

@@ -70,6 +70,7 @@ class Diff_config:
     def __init__(self,standard=1,diff_filename="diff"):
         self.diff_filename=diff_filename
         self.standard=standard;
+        self.score_percent=0
     def run(self,data):
         """
         This function is used to call the diff program to compare the 
@@ -81,8 +82,10 @@ class Diff_config:
             command=self.diff_filename+" "+data.std_output_file+" "+data.output_file+"> /dev/null"
             tmp=os.system(command)
             if (tmp!=0):
+                self.score_percent=0
                 return False 
             else:
+                self.score_percent=100
                 return True
 
 class Compiler_config:
@@ -117,7 +120,7 @@ class Problem_config:
     """
         saved the information of a problem
         it's member:
-            1.pname: the name of the problem
+            1.problem_name: the name of the problem
             2.input_file: the input filename
             3.output_file: the output filename
             4.diff_tool: the diff config
@@ -175,6 +178,7 @@ class Problem_set_type:
 #define some "golbal" variables
 compiler_set=Compiler_set_type()
 problem_set=Problem_set_type()
+problem_list=[]
 contestant_list=[]
 temp_directory=""
 
