@@ -28,6 +28,7 @@ the list of classes the base module supported:
     Compiler_config
     Limit_config
 """
+
 import os
 class JakiError(Exception):
     def __init__(self,value):
@@ -112,10 +113,10 @@ class Limit_config:
         saved information of resource limit
     """
     def __init__(self,time_limit=-1,memory_limit=-1,stack_limit=-1,file_limit=-1):
-        self.time_l=time_limit;
-        self.memory_l=memory_limit;
-        self.stack_l=stack_limit;
-        self.file_l=file_limit;
+        self.time_l=int(time_limit);
+        self.memory_l=int(memory_limit);
+        self.stack_l=int(stack_limit);
+        self.file_l=int(file_limit);
 class Problem_config:
     """
         saved the information of a problem

@@ -31,7 +31,8 @@ import os
 import shutil
 class Judge:
     def __init__(self):
-        self._watcher_path=os.getcwd()+"/watcher/watcher"
+
+        self._watcher_path="watcher"
         #only for develop :)
     def _test_argument(self,point_information,exe_file_name,file_info,limit_info,diff_info):
         if (not isinstance(point_information,(str))):
@@ -66,13 +67,13 @@ class Judge:
         #call watcher to test
         command=self._watcher_path+" -e "+exe_file_name
         if (limit_info.time_l>0): 
-            command+=" -t"+limit_info.time_l;
+            command+=" -t"+str(limit_info.time_l);
         if (limit_info.memory_l>0): 
-            command+=" -m"+limit_info.memory_l;
+            command+=" -m"+str(limit_info.memory_l);
         if (limit_info.stack_l>0): 
-            command+=" -s"+limit_info.stack_l;
+            command+=" -s"+str(limit_info.stack_l);
         if (limit_info.file_l>0): 
-            command+=" -f"+limit_info.file_l;
+            command+=" -f"+str(limit_info.file_l);
 
         #runprogram in the testing directory
         current_work_directory=os.getcwd()
@@ -100,8 +101,11 @@ class Judge:
         #come back
         os.chdir(current_work_directory)
         #clean temp file
-        os.remove(testing_path+file_info.input_file)
-        os.remove(testing_path+file_info.output_file)
+        try:
+            os.remove(testing_path+file_info.input_file)
+            os.remove(testing_path+file_info.output_file)
+        except OSError:
+            ret_message="/"
         return (ret_message,diff_info.score_percent)
 
 

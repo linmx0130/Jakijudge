@@ -17,8 +17,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import print_function
 import base
 import os
+log_out=open("testing.txt","w")
+
 def delete_last_char(s):
     """
         I use this function to delete the "\n" of a string 
@@ -77,3 +80,6 @@ def load_jaki_file():
         base.problem_set.push(pname,sourcefile,load_problem_directory(pname,"Data/"+data_directory+"/"))
         base.problem_list.append(sourcefile)
 
+def log_print(s):
+    print (s)
+    print (s,file=log_out)
