@@ -1,0 +1,6 @@
+//usr_04 I.4
+
+I.4 Start Jaki
+	When you prepare a directory with Jaki file, data and source, you can
+	start jaki to judge all the source.
+

@@ -30,6 +30,7 @@ the list of classes the base module supported:
 """
 
 import os
+__version__="0.3"
 class JakiError(Exception):
     def __init__(self,value):
         self.value=value
