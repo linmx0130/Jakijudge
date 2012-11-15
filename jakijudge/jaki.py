@@ -70,7 +70,10 @@ def Main():
                     found_source=True
                     (tmp1,tmp2)=tester.tester_run(file_name,base.problem_set.find(problem_source_file))
                     contestant_score+=tmp1
-                    result_message+="\n  --"+base.problem_set.find(problem_source_file).problem_name+":"+tmp2
+                    result_message+="\n  --"+base.problem_set.find(problem_source_file).problem_name+":"
+
+                    for i in range(0,len(tmp2)):
+                        result_message+="\n    "+str(i)+":"+tmp2[i]
                     break
 
             if (found_source):

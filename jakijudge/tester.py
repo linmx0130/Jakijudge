@@ -35,13 +35,13 @@ def tester_run(source,problem):
     c.run(source,'"'+base.temp_directory+"program"+'"')
 
     j=judge.Judge()
-    ret_message=""
+    ret_message_list=[]
     score=0
     for i in range(0,problem.data_tot()):
         print(problem.get_file_config(i).std_input_file)
         print(problem.get_file_config(i).std_output_file)
         (tmp1,tmp2)=j.main(runfile,problem.get_file_config(i),problem.get_limit_config(i),problem.diff_tool,point_information=str(i)+":",testing_path=base.temp_directory)
-        ret_message+=tmp1
+        ret_message_list.append(tmp1)
         score+=tmp2*problem.get_score(i)/100
     os.remove(base.temp_directory+"program")
-    return (score,ret_message)
+    return (score,ret_message_list)

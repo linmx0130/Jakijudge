@@ -84,20 +84,17 @@ class Judge:
         ret_message="";
         if (message[0]=='1'):
             print (point_information+"Time Limit Excceed!")
-            ret_message="T";
+            ret_message="Time Limit Excceed";
         if (message[0]=='2'):
             print (point_information+"Runtime Error!")
-            ret_message="R";
+            ret_message="Runtime Error";
         if (message[0]=='3'):
             print (point_information+"Memory Limit Excceed!")
-            ret_message="M";
+            ret_message="Memory Limit Excceed";
         #call diff to test
-        if (not diff_info.run(file_info)):
-            print (point_information+"Wrong Answer!")
-            ret_message="W";
-        else:
-            print(point_information+"Accept")
-            ret_message="A";
+        diff_info.run(file_info)
+        print (point_information+diff_info.addition_info)
+        ret_message=diff_info.addition_info;
         #come back
         os.chdir(current_work_directory)
         #clean temp file
@@ -105,7 +102,7 @@ class Judge:
             os.remove(testing_path+file_info.input_file)
             os.remove(testing_path+file_info.output_file)
         except OSError:
-            ret_message="/"
+            ret_message="No Output File"
         return (ret_message,diff_info.score_percent)
 
 

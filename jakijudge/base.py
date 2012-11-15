@@ -68,11 +68,13 @@ class Diff_config:
         2.filename: the path of the diff program
         3.run() 
         4.addition_info: the addition information from the diff program
+        5.score_percent: how many score can the program get this point
     """
     def __init__(self,standard=1,diff_filename="diff"):
         self.diff_filename=diff_filename
         self.standard=standard;
         self.score_percent=0
+        self.addition_info="saimoe"
     def run(self,data):
         """
         This function is used to call the diff program to compare the 
@@ -85,9 +87,11 @@ class Diff_config:
             tmp=os.system(command)
             if (tmp!=0):
                 self.score_percent=0
+                self.addition_info="Wrong Answer"
                 return False 
             else:
                 self.score_percent=100
+                self.addition_info="Accept"
                 return True
 
 class Compiler_config:
