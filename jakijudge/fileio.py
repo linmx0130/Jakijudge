@@ -39,6 +39,10 @@ def load_problem_directory(pname,data_directory):
     buf=f.readline()
     (input_file,output_file,diff_type,diff_tool_name)=buf.split("|")
     diff_tool_name=delete_last_char(diff_tool_name)
+
+    if (os.path.exists(data_directory+diff_tool_name)):
+        diff_tool_name=os.getcwd()+"/"+data_directory+diff_tool_name
+
     diff_type=int(diff_type)
     d=base.Diff_config(diff_type,diff_tool_name)
     p=base.Problem_config(pname,input_file,output_file,d)
