@@ -14,7 +14,7 @@ I.2 Problem Config File
 			  |--pro1.1.in
 			  |--pro1.1.out
 			  |...
-	This way of config is learnd form CodeBeta Online Judge, which I used 
+	This way of config is learnt form CodeBeta Online Judge, which I used 
 	for more than one years.
 
 	Here is the format of config.ini:
