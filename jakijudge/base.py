@@ -88,11 +88,16 @@ class Diff_config:
             if (tmp!=0):
                 self.score_percent=0
                 self.addition_info="Wrong Answer"
-                return False 
             else:
                 self.score_percent=100
                 self.addition_info="Accept"
-                return True
+        if (self.standard==0):
+            command=self.diff_filename+" "+data.std_input_file+" "+data.std_output_file+" "+data.output_file
+            diff_pipe=os.popen(command)
+            buf=diff_pipe.readline()
+            self.score_percent=int(buf)
+            buf=diff_pipe.readline()
+            self.addition_info=buf
 
 class Compiler_config:
     """

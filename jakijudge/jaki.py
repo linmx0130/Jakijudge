@@ -61,6 +61,7 @@ def Main():
         log_print("Contestant: "+contestant)
         contestant_score=0
         result_message="Test status:"
+        print(base.problem_list)
         for problem_source_file in base.problem_list:
             found_source=False
             for last_name in base.compiler_set.last_name_set.keys():
@@ -76,8 +77,9 @@ def Main():
                         result_message+="\n    "+str(i)+":"+tmp2[i]
                     break
 
-            if (found_source):
-                break
+            if (not found_source):
+                print("NOT FOUND source file for: "+base.problem_set.find(problem_source_file).problem_name)
+                result_message+="\n  --"+base.problem_set.find(problem_source_file).problem_name+": No submit\n"
         log_print(contestant_score)
         log_print(result_message)
 
