@@ -110,11 +110,23 @@ void wait_process(int pid)
 {
 	int status;
 	struct rusage child_rusage;
-	sleep((time_limit+999)/1000);
-	//Time Limit Excceed Test
-	if (!wait4(pid,&status,WNOHANG,&child_rusage))
+	int watcher2=fork();
+	if (watcher2==0)
 	{
+		//I am watcher 2!
+		sleep(time_limit/1000+1);
 		kill(pid,SIGKILL);
+		exit(0);
+	}
+	wait4(pid,&status,0,&child_rusage);
+	//Time Limit Excceed Test
+	int time_used=
+			(child_rusage.ru_utime.tv_sec+
+			 child_rusage.ru_stime.tv_sec)*1000+
+			(child_rusage.ru_utime.tv_usec+
+			child_rusage.ru_stime.tv_usec)/1000;
+	if (time_used>time_limit)
+	{
 		puts("1:Time Limit Exceeded");
 		return ;
 	}
@@ -131,11 +143,7 @@ void wait_process(int pid)
 		return ;
 	}
 	puts("0:Finished Succeed!");
-	printf("Time Used: %d ms\n",
-			(child_rusage.ru_utime.tv_sec+
-			 child_rusage.ru_stime.tv_sec)*1000+
-			(child_rusage.ru_utime.tv_usec+
-			child_rusage.ru_stime.tv_usec)/1000);
+	printf("Time Used: %d ms\n",time_used);
 	printf("Memory Used:%d KB\n",(int)child_rusage.ru_minflt*(getpagesize()>>10));
 
 }

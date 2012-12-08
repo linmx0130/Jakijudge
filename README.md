@@ -10,7 +10,7 @@ It's very simple because at first I only want a program to test my OI code on my
 Jakijudge is a free software and published under GPLv3 or later. I hope you will help me to improve it to build a better judger for all Acmers and Oiers.
 
 Now its maintainer is a Chinese oier - Sweetdumplings(sweetdum) <linmx0130@163.com>
-Jaki is the name of a lovely and kind-heated girl who helped Sweetdumplings when he was in a bad time.
+Jaki is the name of a lovely and kind-hearted girl who helped Sweetdumplings when he was in a bad time.
 
 """
 
