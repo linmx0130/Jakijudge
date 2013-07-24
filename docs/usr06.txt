@@ -6,7 +6,7 @@ II.2 POSIX diff Standard
 	building special judge tool, there is a simple way to support
 	special judge function. It's POSIX diff Standard.
 
-	POSIX diff return 0 if the 2 files to compare is same and 1 if they
+	POSIX diff return 0 if the 2 files to compare are same and 1 if they
 	are different. Your special judge tool can do like it. It should 
 	recieve 2 args: the first is standard output file, and the second is
 	contestant program's output file. If your "diff" return 0, it means

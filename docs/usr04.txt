@@ -1,6 +1,16 @@
 //usr_04 I.4
 
 I.4 Start Jaki
-	When you prepare a directory with Jaki file, data and source, you can
-	start jaki to judge all the source.
+	New Jaki use a Pythonic way to start!
+	First, you need to prepare all the config file. Then you need to run
+jaki_build to build a jaki.py under you contest directory. Finally, you need
+to use python2 to run jaki.py.
 
+		$ jaki_build
+		$ python2 jaki.py
+		//Then jaki will start
+
+In fact, you can try to edit jaki.py. It has a function named 
+"special_setting". It will be called after jaki load the default setting.
+It's for you to hack jaki! You will find the help to hack jaki in Chapter 
+III. But now, it's only a entry for you to start jaki.

@@ -49,10 +49,10 @@ def load_contestant():
         if (os.path.isdir("Source/"+dir_name)):
             base.contestant_list.append(dir_name)
 
-def Main():
+def Main(special_setting):
     #load settings
     default_setting()
-    
+    special_setting()
     #load JAKI file
     fileio.load_jaki_file()
     load_contestant()

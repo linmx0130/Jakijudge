@@ -1,0 +1,3 @@
+#!/usr/bin/python2
+import jakijudge.build
+jakijudge.build.buildjaki_py()

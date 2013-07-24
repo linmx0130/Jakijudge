@@ -8,8 +8,9 @@ I.1 Contest Directory
 
 		Test/                | The name of this directory is not mind.
 		|--JAKI              | Contest config file *1
+		|--jaki.py           | The script to start jaki *2
 		|--Data/             | Data Directory
-		|  |--pro1/          | Directory of Problem "pro1" *2 
+		|  |--pro1/          | Directory of Problem "pro1" *3
 		|  |--pro2/          |
 		|  ...               |
 		|--Src/              | Source Directory
@@ -22,4 +23,5 @@ I.1 Contest Directory
 		|  ...               |
 
 	*1 For details, please turn to usr_03
-	*2 For details, please turn to usr_02
+	*2 For details, please turn to usr_04, it's builded by program
+	*3 For details, please turn to usr_02
