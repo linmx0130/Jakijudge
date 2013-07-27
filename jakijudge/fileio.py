@@ -86,4 +86,4 @@ def load_jaki_file():
 
 def log_print(s):
     print (s)
-    print (s,file=log_out)
+    log_out.write(s+"\n")

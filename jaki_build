@@ -1,3 +1,10 @@
 #!/usr/bin/python2
 import jakijudge.build
-jakijudge.build.buildjaki_py()
+import argparse
+if __name__=="__main__":
+    parser=argparse.ArgumentParser(description="Tools to build jaki.py and other config files")
+    parser.add_argument('-f',action="store_true",default=False,help="build JAKI file, too")
+    args_info=parser.parse_args()
+    if (args_info.f):
+        jakijudge.build.buildjaki_file()
+    jakijudge.build.buildjaki_py()
