@@ -23,6 +23,10 @@ def buildjaki_py():
     The function to build jaki.py
     """
     f=open('jaki.py','w')
+    c="import sys"
+    print >>f,c
+    c="sys.path.append('/usr/lib/jakijudge/')"
+    print >>f,c
     c="from jakijudge import jaki,base"
     print >>f,c
     c="def special_setting():"

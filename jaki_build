@@ -1,4 +1,6 @@
 #!/usr/bin/python2
+import sys
+sys.path.append("/usr/lib/jaki/")
 import jakijudge.build
 import argparse
 if __name__=="__main__":
