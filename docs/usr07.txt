@@ -1,0 +1,10 @@
+//usr_07 III.1
+III.1 jaki.py
+
+	  jaki_build will create jaki.py. If you want to run jaki in the default
+	  config, you don't need to do any other modifying.
+
+	  But you can try to modify the jaki.py to do some special settings.In
+	  jaki.py, there is a function named "special_setting". It will be called
+	  before the judge process. You need to use Python to tell jaki what you
+	  want to do.

@@ -9,4 +9,4 @@ II.Special Judge
 	2.POSIX diff Standard    usr_06.txt
 
 III.Special Setting
-	1.Pre-test Script
+	1.jaki.py

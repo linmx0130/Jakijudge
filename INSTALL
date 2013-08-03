@@ -1,0 +1,5 @@
+Run these command in shell:
+	# make all
+	# make install
+And Jaki Judge will be installed to /usr/.
+
