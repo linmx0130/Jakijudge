@@ -25,7 +25,7 @@ def buildjaki_py():
     f=open('jaki.py','w')
     c="import sys"
     print >>f,c
-    c="sys.path.append('/usr/lib/jakijudge/')"
+    c="sys.path.append('/usr/lib/jaki/')"
     print >>f,c
     c="from jakijudge import jaki,base"
     print >>f,c

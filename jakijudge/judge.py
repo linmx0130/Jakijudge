@@ -82,19 +82,24 @@ class Judge:
         watcher_pipe=os.popen(command,"r",3096);
         message=watcher_pipe.read()
         ret_message="";
+        over_limit=False;
         if (message[0]=='1'):
             print (point_information+"Time Limit Excceed!")
-            ret_message="Time Limit Excceed";
+            ret_message="Time Limit Excceed"
+            over_limit=True
         if (message[0]=='2'):
             print (point_information+"Runtime Error!")
-            ret_message="Runtime Error";
+            ret_message="Runtime Error"
+            over_limit=True
         if (message[0]=='3'):
             print (point_information+"Memory Limit Excceed!")
-            ret_message="Memory Limit Excceed";
+            ret_message="Memory Limit Excceed"
+            over_limit=True
         #call diff to test
-        diff_info.run(file_info)
-        print (point_information+diff_info.addition_info)
-        ret_message=diff_info.addition_info;
+        if (not over_limit):
+            diff_info.run(file_info)
+            print (point_information+diff_info.addition_info)
+            ret_message=diff_info.addition_info;
         #come back
         os.chdir(current_work_directory)
         #clean temp file
