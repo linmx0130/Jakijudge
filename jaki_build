@@ -6,7 +6,12 @@ import argparse
 if __name__=="__main__":
     parser=argparse.ArgumentParser(description="Tools to build jaki.py and other config files")
     parser.add_argument('-f',action="store_true",default=False,help="build JAKI file, too")
+    parser.add_argument('-p',action="store_true",default=False,help="build config file for a problem data direction")
     args_info=parser.parse_args()
     if (args_info.f):
         jakijudge.build.buildjaki_file()
+        exit(0)
+    if (args_info.p):
+        jakijudge.build.buildproblem_config()
+        exit(0)
     jakijudge.build.buildjaki_py()

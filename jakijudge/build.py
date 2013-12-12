@@ -60,3 +60,31 @@ def buildjaki_file():
     f.write("\n")
     for pd in problem_list:
         f.write("%s|%s|%s\n"%(pd[0],pd[1],pd[2]))
+def buildproblem_config():
+    data_file_list=[];
+    for file_name in os.listdir("./"):
+        if (os.path.isfile(file_name)):
+            if (file_name[len(file_name)-3:]=='.in'):
+                t=file_name[:len(file_name)-3]
+                if (os.path.isfile(t+'.out')):
+                    data_file_list.append(t)
+    data_file_list.sort()
+    f=open("config.ini","w")
+    print "Found "+str(len(data_file_list))+" case(s) data!"
+    input_file_name=raw_input("Enter the input file name:")
+    output_file_name=raw_input("Enter the output file name:")
+    checker_name=raw_input("Enter the checker name(oidiff):") or "oidiff"
+    time_limit=raw_input("Enter the time limit in ms(1000):") or "1000"
+    memory_limit=raw_input("Enter the memory limit in KB(65535):") or "65535"
+    score=str(int(100/len(data_file_list)))
+    f.write(input_file_name+"|"+output_file_name+"|"+"1"+"|"+checker_name+"\n")
+    f.write(str(len(data_file_list))+"\n")
+    for file_name in data_file_list:
+        f.write(file_name+".in|")
+        f.write(file_name+".out|")
+        f.write(time_limit+"|")
+        f.write(memory_limit+"|")
+        f.write(score+"\n")
+    f.close()
+    print "Finished! Please check config.ini."
+    
